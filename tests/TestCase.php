@@ -1,4 +1,4 @@
-sh<?php
+<?php
 
 use Mockery as m;
 

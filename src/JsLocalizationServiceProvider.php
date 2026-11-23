@@ -13,13 +13,6 @@ use JsLocalization\Console\RefreshCommand;
 class JsLocalizationServiceProvider extends ServiceProvider {
 
 	/**
-	 * Indicates if loading of the provider is deferred.
-	 *
-	 * @var bool
-	 */
-	protected $defer = false;
-
-	/**
 	 * Bootstrap the application events.
 	 *
 	 * @return void
@@ -28,7 +21,7 @@ class JsLocalizationServiceProvider extends ServiceProvider {
 	{
         $this->publishes([
             __DIR__.'/../config/config.php' => config_path('js-localization.php')
-        ]);
+        ], 'config');
 
         $this->publishes([
             __DIR__.'/../public/js/localization.min.js' => public_path('vendor/js-localization/js-localization.min.js'),
@@ -39,6 +32,7 @@ class JsLocalizationServiceProvider extends ServiceProvider {
         );
         
 		$this->loadViewsFrom(__DIR__.'/../resources/views', 'js-localization');
+        $this->loadRoutesFrom(__DIR__.'/Http/routes.php');
         
         $this->registerRefreshCommand();
         $this->registerExportCommand();
@@ -52,7 +46,6 @@ class JsLocalizationServiceProvider extends ServiceProvider {
 	public function register()
 	{
 		require __DIR__.'/bindings.php';
-		require __DIR__.'/Http/routes.php';
 	}
 
 	/**

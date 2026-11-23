@@ -165,9 +165,9 @@ class JsLocalizationHelperTest extends TestCase
         $filePath = "/tmp/x/y/z/does-not-exist";
 
         $this->expectException(
-            JsLocalization\Exceptions\FileNotFoundException::class,
-            "File not found: $filePath"
+            JsLocalization\Exceptions\FileNotFoundException::class
         );
+        $this->expectExceptionMessage("File not found: $filePath");
 
         JsLocalizationHelper::addMessageFileToExport($filePath, 'xyz::');
     }

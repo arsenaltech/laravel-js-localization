@@ -34,7 +34,8 @@ class StaticFileResponseTest extends TestCase
     {
         $filePath = "/tmp/x/y/z/does-not-exist";
 
-        $this->expectException(Exception::class, "Cannot read file: $filePath");
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage("Cannot read file: $filePath");
 
         new StaticFileResponse($filePath);
     }

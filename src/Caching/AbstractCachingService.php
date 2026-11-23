@@ -49,7 +49,7 @@ abstract class AbstractCachingService {
         $unixTime = Cache::get($this->cacheTimestampKey);
         
         $dateTime = new DateTime;
-        $dateTime->setTimestamp($unixTime);
+        $dateTime->setTimestamp((int) $unixTime);
         
         return $dateTime;
     }
